@@ -1,18 +1,28 @@
-<head>
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-
-<body>
-    <div class="App">
-        <header class="App-header">
-            <p>
-                GitHub Codespaces <span class="heart">♥️</span> Flask Template
-            </p>
-            <p class="small">
-                Edit <code>templates/index.html</code> and refresh to see your changes!
-            </p>
-        </header>
+{% extends "base.html" %}
+{% block title %}My Timelines{% endblock %}
+{% block content %}
+    <h1>My timelines</h1>
+    {% if timelines %}
+        <ul class="timeline-list">
+            {% for t in timelines %}
+                <li class="timeline-card">
+                    <a href="{{ url_for('view_timeline', timeline_id=t.id) }}">
+                        <h2>{{ t.title }}</h2>
+                    </a>
+                    {% if t.description %}
+                        <p>{{ t.description }}</p>
+                    {% endif %}
+                    <p class="meta">{{ t.event_count }} event{{ 's' if t.event_count != 1 }}</p>
+                    <div class="card-actions">
+                        <a href="{{ url_for('edit_timeline', timeline_id=t.id) }}">Edit</a>
+                        <form method="POST" action="{{ url_for('delete_timeline', timeline_id=t.id) }}">
+                            <button type="submit">Delete</button>
+                        </form>
     </div>
-</body>
-
-</html>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No timelines yet. <a href="{{ url_for('new_timeline') }}">Create one!</a></p>
+    {% endif %}
+{% endblock %}

@@ -75,7 +75,7 @@ def edit_timeline(timeline_id):
 @app.route("/timeline/<int:timeline_id>/delete", methods=["POST"])
 def delete_timeline(timeline_id):
     with get_database() as conn:
-        conn.execute("DELTE FROM timelines WHERE id = ?", (timeline_id,))
+        conn.execute("DELETE FROM timelines WHERE id = ?", (timeline_id,))
     flash("Timeline deleted.", "success")
     return redirect(url_for("index"))
 

@@ -11,14 +11,14 @@
                     </a>
                     {% if t.description %}
                         <p>{{ t.description }}</p>
-                    {% endif %}
+                            {% endif %}
                     <p class="meta">{{ t.event_count }} event{{ 's' if t.event_count != 1 }}</p>
                     <div class="card-actions">
                         <a href="{{ url_for('edit_timeline', timeline_id=t.id) }}">Edit</a>
                         <form method="POST" action="{{ url_for('delete_timeline', timeline_id=t.id) }}">
                             <button type="submit">Delete</button>
                         </form>
-    </div>
+                    </div>
                 </li>
             {% endfor %}
         </ul>

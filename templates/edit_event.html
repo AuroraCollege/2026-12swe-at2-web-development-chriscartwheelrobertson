@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}{{ "Edit" if event else "New" }} event - {{ timeline.title }}{% endblock %}
+{% block content %}
+    <h1>{{ "Edit" if event else "New" }} event</h1>
+    <p class="subtitle">Timeline: <a href="{{ url_for('view_timeline', timeline_id=timeline.id) }}"></a></p>
+
+    <form method="POST">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                value="{{ event.title if event else '' }}"
+                required
+                autofocus
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="event_date">Date</label>
+            <input
+                type="date"
+                id="event_date"
+                name="event_date"
+                value="{{ event.event_date if event else '' }}"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+                id="description"
+                name="description"
+                rows="3"
+            >{{ event.description if event else '' }}</textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit">{{ "Save changes" if event else "Add event" }}</button>
+            <a href="{{ url_for('view_timeline', timeline_id=timeline.id) }}">Cancel</a>
+        </div>
+    </form>
+{% endblock %}

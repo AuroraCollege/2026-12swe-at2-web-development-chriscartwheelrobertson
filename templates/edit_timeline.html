@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}{{ "Edit" if timeline else "New"}} timeline{% endblock %}
+{% block content %}
+    <h1>{{ "Edit" if timeline else "New" }} timeline</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                value="{{ timeline.title if timeline else '' }}"
+                required
+                autofocus
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+                id="description"
+                name="description"
+                rows="4"
+            >{{ timeline.description if timeline else '' }}</textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit">{{ "Save changes" if timeline else "Create timeline" }}</button>
+            <a href="{{ url_for('index')}}">Cancel</a>
+        </div>
+    </form>
+{% endblock %}

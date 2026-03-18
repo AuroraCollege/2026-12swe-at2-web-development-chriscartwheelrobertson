@@ -2,7 +2,7 @@
 {% block title %}{{ "Edit" if event else "New" }} event - {{ timeline.title }}{% endblock %}
 {% block content %}
     <h1>{{ "Edit" if event else "New" }} event</h1>
-    <p class="subtitle">Timeline: <a href="{{ url_for('view_timeline', timeline_id=timeline.id) }}"></a></p>
+    <p class="subtitle">Timeline: <a href="{{ url_for('view_timeline', timeline_id=timeline.id) }}">{{ timeline.title }}</a></p>
 
     <form method="POST">
         <div class="form-group">

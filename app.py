@@ -102,7 +102,7 @@ def new_event(timeline_id):
             )
             flash("Event added!", "success")
             return redirect(url_for("view_timeline", timeline_id=timeline_id))
-    return render_template("edit_event.html", timeline=timeline, event=None)
+    return render_template("edit_event.html", timeline=timeline, event=event)
 
 @app.route("/events/<int:event_id>/edit", methods=["GET", "POST"])
 def edit_event(event_id):
